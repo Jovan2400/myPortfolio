@@ -1,0 +1,1531 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b1a">
+<meta name="description" content="Jovan Kizza — Software Engineering Student, Web Designer and Developer.">
+<title>Jovan Kizza | Developer & Digital Creative</title>
+
+<!-- Montserrat Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #101b1a;
+    --panel: #172523;
+    --ink: #f1f2e9;
+    --muted: #a8b5ad;
+    --accent: #b7f36b;
+    --line: rgba(241,242,233,.13);
+    --font: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: var(--font);
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.container {
+    width: min(1160px, calc(100% - 48px));
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+.topbar {
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 30;
+}
+
+.brand {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.brand span {
+    color: var(--accent);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.nav a {
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color .3s;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: var(--accent);
+}
+
+.nav .nav-cta {
+    border: 1px solid var(--line);
+    padding: 10px 17px;
+    color: var(--ink);
+}
+
+.nav .nav-cta:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* MOBILE MENU BUTTON */
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--ink);
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 52;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--ink);
+    margin: 6px auto;
+    transition: .3s;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(4px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+}
+
+/* FULL SCREEN MOBILE MENU */
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 50;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 12vh 10vw;
+
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+
+    transition:
+        clip-path .65s cubic-bezier(.76,0,.24,1),
+        visibility .65s;
+}
+
+.mobile-menu.open {
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+}
+
+.menu-kicker {
+    color: var(--accent);
+    font-size: .75rem;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-links a {
+    font-size: clamp(2.5rem, 9vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -3px;
+    transition: color .3s;
+}
+
+.menu-links a:hover {
+    color: var(--accent);
+}
+
+.menu-bottom {
+    margin-top: 45px;
+    color: var(--muted);
+    font-size: .7rem;
+    letter-spacing: 2px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 690px;
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    align-items: center;
+    gap: 50px;
+    padding: 90px 0 100px;
+    position: relative;
+}
+
+.eyebrow {
+    font-size: .75rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 27px;
+    height: 1px;
+    background: var(--accent);
+}
+
+h1 {
+    font-size: clamp(3.7rem, 8.5vw, 7.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -7px;
+    margin: 28px 0;
+}
+
+h1 em {
+    font-style: normal;
+    color: var(--accent);
+}
+
+.hero-copy {
+    color: var(--muted);
+    max-width: 550px;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border: 1px solid var(--line);
+    font-size: .85rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+
+.btn.primary:hover {
+    background: #c9ff88;
+}
+
+.hero-side {
+    justify-self: end;
+    width: min(100%, 330px);
+}
+
+.orbit-card {
+    aspect-ratio: 4/5;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.orbit-card::before,
+.orbit-card::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(183,243,107,.35);
+    border-radius: 50%;
+    width: 260px;
+    height: 260px;
+    right: -95px;
+    top: 70px;
+}
+
+.orbit-card::after {
+    width: 190px;
+    height: 190px;
+    right: -60px;
+    top: 105px;
+}
+
+.card-top,
+.card-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: .65rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.monogram {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 9rem;
+    font-weight: 800;
+    letter-spacing: -15px;
+    color: var(--accent);
+}
+
+.monogram span {
+    color: var(--ink);
+}
+
+.card-bottom strong {
+    font-size: 1rem;
+    color: var(--ink);
+}
+
+.scroll-note {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    font-size: .65rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+}
+
+/* GENERAL SECTIONS */
+
+.section {
+    padding: 110px 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 54px;
+}
+
+.section-no {
+    font-size: .7rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -4px;
+}
+
+.section-intro {
+    max-width: 360px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.9;
+}
+
+/* ABOUT */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+}
+
+.about-lead {
+    font-size: clamp(1.5rem, 2.7vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -1px;
+}
+
+.about-lead span {
+    color: var(--accent);
+}
+
+.about-text {
+    color: var(--muted);
+    margin-top: 22px;
+    line-height: 1.9;
+    font-size: .9rem;
+}
+
+.facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 36px;
+}
+
+.fact {
+    background: var(--bg);
+    padding: 19px;
+}
+
+.fact small {
+    display: block;
+    color: var(--muted);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+}
+
+.fact strong {
+    font-size: .85rem;
+}
+
+/* SKILLS */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 14px;
+}
+
+.skill-card {
+    background: var(--panel);
+    padding: 27px;
+    border: 1px solid var(--line);
+    min-height: 190px;
+    transition: .35s;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+}
+
+.skill-index {
+    font-size: .7rem;
+    color: var(--accent);
+}
+
+.skill-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 24px 0 9px;
+}
+
+.skill-card p {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 17px;
+}
+
+.tag {
+    font-size: .65rem;
+    padding: 6px 9px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+}
+
+/* EXPERIENCE */
+
+.experience {
+    display: grid;
+    grid-template-columns: .65fr 1.35fr;
+    gap: 80px;
+}
+
+.experience-label {
+    font-size: .7rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.experience-main {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+}
+
+.experience-main h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.experience-main p {
+    color: var(--muted);
+    margin-top: 15px;
+    max-width: 650px;
+    line-height: 1.9;
+    font-size: .9rem;
+}
+
+.exp-meta {
+    font-size: .7rem;
+    color: var(--muted);
+    margin-top: 10px;
+}
+
+/* PROJECTS */
+
+.work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.work-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 28px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: .3s;
+}
+
+.work-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+.work-top {
+    display: flex;
+    justify-content: space-between;
+    color: var(--accent);
+    font-size: .7rem;
+}
+
+.work-card h3 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.work-card p {
+    color: var(--muted);
+    font-size: .85rem;
+    line-height: 1.8;
+}
+
+.work-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 26px;
+}
+
+.work-bottom .tags {
+    margin: 0;
+}
+
+.work-link {
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.note {
+    color: var(--muted);
+    font-size: .75rem;
+    margin-top: 18px;
+}
+
+/* CONTACT */
+
+.contact {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 75px 7%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 35px;
+}
+
+.contact .section-no {
+    color: rgba(16,27,26,.65);
+}
+
+.contact h2 {
+    max-width: 700px;
+}
+
+.contact p {
+    margin-top: 17px;
+    max-width: 500px;
+    color: rgba(16,27,26,.75);
+}
+
+.contact .btn {
+    border-color: var(--bg);
+    color: var(--bg);
+    white-space: nowrap;
+}
+
+.contact .btn:hover {
+    background: var(--bg);
+    color: var(--accent);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: var(--muted);
+    font-size: .7rem;
+    letter-spacing: 1px;
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
+/* ANIMATIONS */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width:800px) {
+
+    .container {
+        width: min(100% - 36px,650px);
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 90px 0 105px;
+        gap: 55px;
+    }
+
+    .hero-side {
+        justify-self: start;
+        width: 230px;
+    }
+
+    .orbit-card {
+        aspect-ratio: 1/1;
+    }
+
+    .monogram {
+        font-size: 6rem;
+    }
+
+    .section {
+        padding: 82px 0;
+    }
+
+    .section-head {
+        display: block;
+        margin-bottom: 36px;
+    }
+
+    .section-intro {
+        margin-top: 18px;
+    }
+
+    .about-grid,
+    .experience {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact {
+        grid-template-columns: 1fr;
+        padding: 55px 8%;
+    }
+
+    .contact .btn {
+        width: max-content;
+    }
+}
+
+@media(max-width:540px) {
+
+    .hero {
+        padding-top: 75px;
+    }
+
+    h1 {
+        font-size: clamp(3.35rem,16vw,5.1rem);
+        letter-spacing: -4px;
+    }
+
+    .hero-copy {
+        font-size: .9rem;
+    }
+
+    .btn {
+        padding: 13px 15px;
+    }
+
+    .skills-grid,
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-card {
+        min-height: 160px;
+    }
+
+    .facts {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section {
+        padding: 72px 0;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu-links a {
+        font-size: clamp(2.7rem,13vw,4.5rem);
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="container topbar">
+
+    <a class="brand" href="#home">JK<span>.</span></a>
+
+    <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#skills">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Selected Work</a>
+        <a href="#contact" class="nav-cta">Let's Talk ↗</a>
+    </nav>
+
+    <button class="menu-toggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu">
+
+        <span></span>
+        <span></span>
+
+    </button>
+
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+
+    <div class="menu-kicker">
+        Navigation / Jovan Kizza
+    </div>
+
+    <nav class="menu-links">
+        <a href="#about">About</a>
+        <a href="#skills">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Selected Work</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="menu-bottom">
+        KAMPALA, UGANDA · AVAILABLE FOR CREATIVE WORK
+    </div>
+
+</div>
+
+<main id="home">
+
+<!-- HERO SECTION -->
+<section class="container hero">
+
+    <div class="hero-main reveal">
+
+        <div class="eyebrow">
+            Software Engineering · Digital Craft
+        </div>
+
+        <h1>
+            Ideas into<br>
+            <em>interfaces.</em>
+        </h1>
+
+        <p class="hero-copy">
+            I'm Jovan Kizza — a software engineering student,
+            web designer and developer who enjoys building
+            thoughtful digital experiences, working with data,
+            and bringing ideas to life through design.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="#work" class="btn primary">
+                Explore my work ↗
+            </a>
+
+            <a href="#contact" class="btn">
+                Get in touch ↗
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-side reveal">
+
+        <div class="orbit-card">
+
+            <div class="card-top">
+                <span>Independent Mind</span>
+                <span>01 / 01</span>
+            </div>
+
+            <div class="monogram">
+                J<span>K</span>
+            </div>
+
+            <div class="card-bottom">
+                <div>
+                    <strong>Jovan Kizza</strong><br>
+                    <span>Developer & Creative</span>
+                </div>
+
+                <span>UG · 2026</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-note">
+        SCROLL TO EXPLORE
+    </div>
+
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section" id="about">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div>
+                <div class="section-no">
+                    01 / A LITTLE ABOUT ME
+                </div>
+
+                <h2>
+                    Curious by nature.<br>
+                    Builder by choice.
+                </h2>
+            </div>
+
+            <p class="section-intro">
+                A mix of technical thinking and visual creativity,
+                grounded in a desire to make digital things useful,
+                clear and considered.
+            </p>
+
+        </div>
+
+        <div class="about-grid">
+
+            <div class="reveal">
+
+                <p class="about-lead">
+                    I believe good technology should feel
+                    <span>simple, intentional and human.</span>
+                </p>
+
+                <p class="about-text">
+                    I'm studying Software Engineering at
+                    Victoria University in Kampala, Uganda.
+                    My interests sit at the intersection of
+                    web development, database programming
+                    and visual design.
+
+                    I like understanding how things work,
+                    solving practical problems and turning
+                    rough ideas into polished experiences.
+                </p>
+
+            </div>
+
+            <div class="reveal">
+
+                <p class="about-text" style="margin-top:0">
+                    Beyond the screen, I value curiosity,
+                    consistency and learning by building.
+                    Whether I'm shaping a web interface,
+                    organising information in a database
+                    or creating graphics, I pay attention
+                    to the details that make the final
+                    result work.
+                </p>
+
+                <div class="facts">
+
+                    <div class="fact">
+                        <small>Based In</small>
+                        <strong>Kampala, Uganda</strong>
+                    </div>
+
+                    <div class="fact">
+                        <small>Currently</small>
+                        <strong>Software Engineering</strong>
+                    </div>
+
+                    <div class="fact">
+                        <small>Focus</small>
+                        <strong>Web & Databases</strong>
+                    </div>
+
+                    <div class="fact">
+                        <small>Approach</small>
+                        <strong>Learn. Build. Refine.</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="section" id="skills">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div>
+                <div class="section-no">
+                    02 / WHAT I WORK WITH
+                </div>
+
+                <h2>Tools of the trade.</h2>
+            </div>
+
+            <p class="section-intro">
+                A growing toolkit for designing, developing
+                and managing useful digital solutions.
+            </p>
+
+        </div>
+
+        <div class="skills-grid">
+
+            <article class="skill-card reveal">
+                <div class="skill-index">01 — FRONT END</div>
+                <h3>Web Design & Development</h3>
+                <p>
+                    Building responsive interfaces with
+                    attention to layout, usability and details.
+                </p>
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </article>
+
+            <article class="skill-card reveal">
+                <div class="skill-index">02 — DATA</div>
+                <h3>Database Programming</h3>
+                <p>
+                    Working with structured data, database
+                    logic and practical database management.
+                </p>
+                <div class="tags">
+                    <span class="tag">Caspio</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Database Design</span>
+                </div>
+            </article>
+
+            <article class="skill-card reveal">
+                <div class="skill-index">03 — PROGRAMMING</div>
+                <h3>Software Foundations</h3>
+                <p>
+                    Developing problem-solving skills through
+                    programming concepts and hands-on practice.
+                </p>
+                <div class="tags">
+                    <span class="tag">C Programming</span>
+                    <span class="tag">Logic</span>
+                </div>
+            </article>
+
+            <article class="skill-card reveal">
+                <div class="skill-index">04 — CREATIVE</div>
+                <h3>Graphic Design</h3>
+                <p>
+                    Creating visual assets and communicating
+                    ideas through clean, purposeful design.
+                </p>
+                <div class="tags">
+                    <span class="tag">Graphic Design</span>
+                    <span class="tag">Visual Content</span>
+                </div>
+            </article>
+
+            <article class="skill-card reveal">
+                <div class="skill-index">05 — WORKFLOW</div>
+                <h3>Tools & Collaboration</h3>
+                <p>
+                    Using modern tools to organise work,
+                    explore ideas and collaborate on projects.
+                </p>
+                <div class="tags">
+                    <span class="tag">GitHub</span>
+                    <span class="tag">Microsoft Office</span>
+                    <span class="tag">ChatGPT</span>
+                </div>
+            </article>
+
+            <article class="skill-card reveal">
+                <div class="skill-index">06 — MINDSET</div>
+                <h3>How I Approach Work</h3>
+                <p>
+                    Understand the problem, build a clear
+                    solution, then keep improving it.
+                </p>
+                <div class="tags">
+                    <span class="tag">Problem Solving</span>
+                    <span class="tag">Adaptability</span>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section class="section" id="experience">
+
+    <div class="container experience">
+
+        <div class="reveal">
+
+            <div class="section-no">
+                03 / EXPERIENCE
+            </div>
+
+            <h2>
+                Experience that<br>
+                shapes the work.
+            </h2>
+
+        </div>
+
+        <div class="experience-main reveal">
+
+            <div class="experience-label">
+                DATABASE MANAGEMENT · 3 YEARS
+            </div>
+
+            <h3>Caspio — Database Management</h3>
+
+            <div class="exp-meta">
+                Three years of hands-on experience
+            </div>
+
+            <p>
+                I have three years of experience managing
+                databases using Caspio, working with
+                structured information and supporting
+                database-driven workflows.
+
+                This experience has strengthened my
+                understanding of data organisation,
+                accuracy and the role reliable information
+                systems play in day-to-day operations.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="section" id="work">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div>
+                <div class="section-no">
+                    04 / SELECTED WORK
+                </div>
+
+                <h2>Things I build.</h2>
+            </div>
+
+            <p class="section-intro">
+                A few project directions and areas of practice.
+                Add live projects, screenshots and repository
+                links as you publish them.
+            </p>
+
+        </div>
+
+        <div class="work-grid">
+
+            <article class="work-card reveal">
+
+                <div class="work-top">
+                    <span>01 / WEB CONCEPT</span>
+                    <span>↗</span>
+                </div>
+
+                <div>
+
+                    <h3>Land Walker</h3>
+
+                    <p>
+                        A footwear shopping experience concept
+                        focused on clean product presentation,
+                        straightforward navigation and a
+                        helpful fit-discovery flow.
+                    </p>
+
+                    <div class="work-bottom">
+
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+
+                        <span class="work-link">↗</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="work-card reveal">
+
+                <div class="work-top">
+                    <span>02 / DIGITAL COMMERCE</span>
+                    <span>↗</span>
+                </div>
+
+                <div>
+
+                    <h3>TechHubNex</h3>
+
+                    <p>
+                        A technology store website concept
+                        for presenting devices, product
+                        specifications and maintenance
+                        services in one clear experience.
+                    </p>
+
+                    <div class="work-bottom">
+
+                        <div class="tags">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">Front End</span>
+                        </div>
+
+                        <span class="work-link">↗</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="work-card reveal">
+
+                <div class="work-top">
+                    <span>03 / DATABASE</span>
+                    <span>↗</span>
+                </div>
+
+                <div>
+
+                    <h3>Caspio Workflows</h3>
+
+                    <p>
+                        Database management experience built
+                        around maintaining structured
+                        information and supporting
+                        dependable workflows.
+                    </p>
+
+                    <div class="work-bottom">
+
+                        <div class="tags">
+                            <span class="tag">Caspio</span>
+                            <span class="tag">Data</span>
+                        </div>
+
+                        <span class="work-link">↗</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="work-card reveal">
+
+                <div class="work-top">
+                    <span>04 / VISUAL DESIGN</span>
+                    <span>↗</span>
+                </div>
+
+                <div>
+
+                    <h3>Graphic Design</h3>
+
+                    <p>
+                        Visual communication through custom
+                        graphics and digital creative work.
+                        Add selected examples here to show
+                        your style.
+                    </p>
+
+                    <div class="work-bottom">
+
+                        <div class="tags">
+                            <span class="tag">Graphics</span>
+                            <span class="tag">Creative</span>
+                        </div>
+
+                        <span class="work-link">↗</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <p class="note">
+            Project descriptions are based on the information
+            currently available. Add links and screenshots
+            when each project is ready to showcase.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="container" id="contact" style="padding-bottom:90px">
+
+    <div class="contact reveal">
+
+        <div>
+
+            <div class="section-no">
+                05 / START A CONVERSATION
+            </div>
+
+            <h2>
+                Have an idea?<br>
+                Let's make it work.
+            </h2>
+
+            <p>
+                Open to thoughtful collaborations,
+                opportunities and conversations around
+                web development, databases and design.
+            </p>
+
+        </div>
+
+        <!-- Replace this with your actual email -->
+        <a class="btn" href="mailto:YOUR-EMAIL@example.com">
+            Email Me ↗
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="container">
+
+    <span>
+        © <span id="year"></span> Jovan Kizza.
+        Built with intention.
+    </span>
+
+    <span>KAMPALA, UGANDA</span>
+
+    <a href="#home">BACK TO TOP ↑</a>
+
+</footer>
+
+<script>
+
+/* MOBILE MENU */
+
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.mobile-menu');
+
+const menuLinks = menu.querySelectorAll('a');
+
+function setMenu(open) {
+
+    toggle.setAttribute('aria-expanded', String(open));
+
+    toggle.setAttribute(
+        'aria-label',
+        open ? 'Close navigation menu' : 'Open navigation menu'
+    );
+
+    menu.classList.toggle('open', open);
+
+    menu.setAttribute('aria-hidden', String(!open));
+
+    document.body.classList.toggle('menu-open', open);
+
+}
+
+toggle.addEventListener('click', () => {
+
+    const isOpen =
+        toggle.getAttribute('aria-expanded') === 'true';
+
+    setMenu(!isOpen);
+
+});
+
+/* CLOSE MENU AFTER CLICKING A LINK */
+
+menuLinks.forEach(link => {
+
+    link.addEventListener('click', () => {
+        setMenu(false);
+    });
+
+});
+
+/* CLOSE MENU USING ESCAPE KEY */
+
+document.addEventListener('keydown', event => {
+
+    if (event.key === 'Escape') {
+        setMenu(false);
+    }
+
+});
+
+/* AUTOMATIC COPYRIGHT YEAR */
+
+document.getElementById('year').textContent =
+    new Date().getFullYear();
+
+/* SCROLL REVEAL ANIMATIONS */
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add('visible');
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+document.querySelectorAll('.reveal').forEach(element => {
+
+    observer.observe(element);
+
+});
+
+/* ACTIVE NAVIGATION LINK */
+
+const sections = [
+    ...document.querySelectorAll('main section[id]')
+];
+
+const navLinks = [
+    ...document.querySelectorAll('.nav a[href^="#"]')
+];
+
+const activeObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            navLinks.forEach(link => {
+
+                link.classList.toggle(
+                    'active',
+                    link.getAttribute('href') ===
+                    '#' + entry.target.id
+                );
+
+            });
+
+        }
+
+    });
+
+}, {
+    rootMargin: '-35% 0px -55% 0px'
+});
+
+sections.forEach(section => {
+
+    activeObserver.observe(section);
+
+});
+
+</script>
+
+</body>
+</html>
